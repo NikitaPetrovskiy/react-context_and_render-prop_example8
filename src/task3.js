@@ -26,14 +26,14 @@ const LocalizedText = ({children}) => {
   LocalizedText.propTypes = {
     children: PropTypes.string.isRequired
   };
+  const languageEN = 'EN';
 
   return (
       <LanguagesContext.Consumer >
         {(languages) => {
           let buttonTextLanguages = dictionaries[languages.toLowerCase()][children];
           if (!buttonTextLanguages) {
-            languages = 'EN';
-            buttonTextLanguages = dictionaries[languages.toLowerCase()][children];
+            buttonTextLanguages = dictionaries[languageEN.toLowerCase()][children];
           }
           return buttonTextLanguages;
         }}

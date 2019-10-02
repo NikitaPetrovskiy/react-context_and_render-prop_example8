@@ -6,16 +6,11 @@ const isPlainObject = (obj) => {
 };
 
 class State extends React.Component {
-        state = {};
-    componentDidMount() {
-        const initialState = this.props.initialState;
-        if (!initialState) {
-            this.setState(() => ({}) );
-        } else if (isPlainObject(initialState)) {
-            this.setState(() => (initialState));
-        } else if (!isPlainObject(initialState)) {
-            this.setState({value: initialState});
-        }
+    constructor(props) {
+        super(props);
+        this.state = !this.props.initialState ? {} :
+            isPlainObject(this.props.initialState) ?
+                this.props.initialState : { value: this.props.initialState };
     }
 
     render() {
